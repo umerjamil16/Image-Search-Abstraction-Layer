@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
 
+var bodyParser = require("body-parser");
+
 var PORT = process.env.PORT;
 var unsplash = require('unsplash-api');
 var clientId = '7a47702e60c7874bf9114bd79340284e2cd8f493eee0be06f6e9fa7b44356a2c'; //this is required to verify your application's requests 
@@ -8,18 +10,24 @@ unsplash.init(clientId);
 
 var finalArray = [];
 
-app.get("/", function(req, res, next) {
+app.use(bodyParser.json());
 
-    unsplash.searchPhotos('bunny', null, null, null, function(error, photos, link) {
+app.get("/", function(req, res, next) {
+  res.send("Working!!");
+});
+
+app.get("/searchImage/:data", function(req, res, next) {
+  var offset = parseInt(req.query.offset, 10) || 0;
+  var searchString = req.params.data.toString();
+    unsplash.searchPhotos(searchString, null, null, null, function(error, photos, link) {
         if (!error) {
-            photos.forEach(function(entry) {
+            for(var i=0; i<photos.length; i+=1+offset) {
                 var obj = {};
-                obj.url = entry.urls.raw;
-                obj.thumbnail = entry.urls.thumb;
-                obj.Upoaded_By = entry.user.name;
+                obj.url = photos[i].urls.raw;
+                obj.thumbnail = photos[i].urls.thumb;
+                obj.Upoaded_By = photos[i].user.name;
                 finalArray.push(obj);
-            });
-            //Access default 10 photos from first page of search results here 
+            }
             res.json(finalArray);
 
         } else

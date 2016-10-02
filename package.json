@@ -8,6 +8,7 @@
   "dependencies": {
     "async": "~2.0.1",
     "bing.search": "^1.0.1",
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "fotology-x": "^1.2.4",
     "google-images": "^2.0.0",
