@@ -1,0 +1,20 @@
+{
+  "name": "image-search-abstraction-layer",
+  "version": "0.0.0",
+  "description": "Image Search Abstraction Layer",
+  "main": "server.js",
+  "repository": "",
+  "author": "Umer Jamil",
+  "dependencies": {
+    "async": "~2.0.1",
+    "bing.search": "^1.0.1",
+    "express": "^4.14.0",
+    "fotology-x": "^1.2.4",
+    "google-images": "^2.0.0",
+    "jsearch": "^1.0.0",
+    "node-bing-api": "^2.4.1",
+    "socket.io": "~1.4.8",
+    "unsplash-api": "^1.2.0",
+    "util": "^0.10.3"
+  }
+}
